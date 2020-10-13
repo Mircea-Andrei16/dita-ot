@@ -105,8 +105,6 @@ public abstract class AbstractReaderModule extends AbstractPipelineModuleImpl {
     boolean validate = true;
     ContentHandler nullHandler;
     TempFileNameScheme tempFileNameScheme;
-//    /** Absolute path to input file. */
-//    URI rootFile;
     List<URI> resources;
     /** List of absolute input files. */
     List<URI> rootFiles;
@@ -295,10 +293,6 @@ public abstract class AbstractReaderModule extends AbstractPipelineModuleImpl {
                         .map(f -> f.resolve("."))
                         .reduce(rootFiles.get(0).resolve("."), (left, right) -> URLUtils.getBase(left, right));
             }
-//            rootFile = rootFiles.size() == 1
-//                    ? rootFiles.get(0)
-//                    : baseInputDir.resolve(ReaderUtils.GEN_MAP);
-//            job.setInputFile(rootFile);
             job.setInputDir(baseInputDir);
         } else {
             URI ditaInput = toURI(input.getAttribute(ANT_INVOKER_PARAM_INPUTMAP));
