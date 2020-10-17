@@ -330,6 +330,7 @@ public final class GenMapAndTopicListModule extends SourceReaderModule {
                         return getRootFile(basedir, ditaInput);
                     })
                     .collect(Collectors.toList());
+            job.setInputFile(rootFiles.get(0));
             if (baseInputDir == null) {
                 baseInputDir = rootFiles.stream()
                         .map(f -> f.resolve("."))
@@ -340,6 +341,7 @@ public final class GenMapAndTopicListModule extends SourceReaderModule {
             final URI ditaInput = toURI(input.getAttribute(ANT_INVOKER_PARAM_INPUTMAP));
             final URI rootFile = getRootFile(basedir, ditaInput);
             rootFiles = Collections.singletonList(rootFile);
+            job.setInputFile(rootFile);
             if (baseInputDir == null) {
                 baseInputDir = rootFile.resolve(".");
             }
@@ -353,9 +355,6 @@ public final class GenMapAndTopicListModule extends SourceReaderModule {
 
         // create the keydef file for scheme files
         schemekeydefMap = new HashMap<>();
-
-        // Set the mapDir
-//        job.setInputFile(rootFile);
     }
 
     private URI getRootFile(final File basedir, final URI ditaInput) {
