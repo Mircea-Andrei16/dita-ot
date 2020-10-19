@@ -187,8 +187,7 @@ See the accompanying LICENSE file for applicable license.
   <target name="profile" depends="profile-check"
           unless="preprocess.profile.skip"
           description="Profile input files">
-    <pipeline message="Profile filtering." taskname="profile"
-              inputmap="${args.inputs}">
+    <pipeline message="Profile filtering." taskname="profile">
       <module class="org.dita.dost.module.FilterModule">
         <ditafileset format="dita"/>
         <ditafileset format="ditamap" input="true"/>
