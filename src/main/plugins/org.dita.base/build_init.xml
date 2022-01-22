@@ -95,9 +95,7 @@ See the accompanying LICENSE file for applicable license.
 
     <property name="filter-stage" value="early"/>
     <condition property="filter-on-parse" value="true">
-      <and>
-        <equals arg1="${filter-stage}" arg2="early"/>
-      </and>
+      <equals arg1="${filter-stage}" arg2="early"/>
     </condition>
 
     <!-- append a '.' to out.ext if args.outext not contains '.' -->
@@ -225,8 +223,17 @@ See the accompanying LICENSE file for applicable license.
 
     <!-- TODO: merge -->
     <preprocess-skip-init name="preprocess.profile" step="profile"/>
+    <condition property="preprocess.profile.skip">
+      <istrue value="${filter-on-parse}"/>
+    </condition>
     <preprocess-skip-init name="preprocess.topic-profile" step="topic-profile"/>
+    <condition property="preprocess.topic-profile.skip">
+      <istrue value="${topic.filter-on-parse}"/>
+    </condition>
     <preprocess-skip-init name="preprocess.map-profile" step="map-profile"/>
+    <condition property="preprocess.map-profile.skip">
+      <istrue value="${map.filter-on-parse}"/>
+    </condition>
 
     <preprocess-skip-init name="preprocess.topicpull" step="topicpull"/><!-- Populate link text for links within topics (xref, link). -->
 
